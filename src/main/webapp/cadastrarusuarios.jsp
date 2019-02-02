@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
@@ -11,9 +11,39 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
+<%@include file="navbar.jsp" %>
 
-<%@include file="navbar.jsp"%>
+<div class="container">
+    <h1>Cadastro de Usuários</h1>
+    <div class="row">
+        <form>
+            <div class="col-md">
+                <div class="form-group">
+                    <label>Nome de Usuário</label>
+                    <input type="text" class="form-control" id="nomedeusuario">
 
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" id="email">
+
+                    <label>Senha</label>
+                    <input type="password" class="form-control" id="senha">
+
+                    <label>Papel</label>
+                    <select>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <button class="btn btn-success">Enviar</button>
+                    </div>
+                    <div class="col-md">
+                        <button class="btn btn-warning">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
