@@ -92,16 +92,9 @@
                 <configuration>
                     <url>jdbc:postgresql://localhost:5432/agendadodoutor</url>
                     <user>postgres</user>
-                    <locations>
-                        <location>classpath:migrations</location>
-                    </locations>
+                    <password>root</password>
+                    <baselineOnMigrate>true</baselineOnMigrate>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
