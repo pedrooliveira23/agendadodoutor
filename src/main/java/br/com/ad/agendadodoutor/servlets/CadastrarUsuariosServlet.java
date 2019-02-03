@@ -12,21 +12,15 @@ import java.io.IOException;
 
 @WebServlet(name = "cadastrarusuarios", urlPatterns = {"/cadastrarusuarios"})
 public class CadastrarUsuariosServlet extends HttpServlet {
-    private HttpSession sessao;
-    private PapelBo papelBo;
 
-    @Override
-    protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         listePapeis(request);
-            request.getRequestDispatcher("cadastrarusuarios.jsp").forward(request, response);
+        request.getRequestDispatcher("cadastrarusuarios.jsp").forward(request, response);
     }
 
     private void listePapeis(HttpServletRequest request) {
-        papelBo = new PapelBo();
-        sessao = request.getSession();
-        sessao.setAttribute("listaPapeis",papelBo.listePapeis());
+        PapelBo papelBo = new PapelBo();
+        HttpSession sessao = request.getSession();
+        request.setAttribute("listaPapeis", "Teste");
     }
 }

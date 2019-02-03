@@ -30,16 +30,7 @@
 
                     <label>Papel</label>
                     <select>
-                        <%
-                            java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel>) session.getAttribute("listaPapeis");
-                            for (int i = 0; i < lista.size(); i++) {
-                        %>
-                        <option>
-                            <%=lista.get(i).getNome()%>
-                        </option>
-                        <%
-                            }
-                        %>
+<                       <option><%=request.getAttribute("listaPapeis")%></option>
                     </select>
                 </div>
                 <div class="row">

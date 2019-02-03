@@ -18,6 +18,7 @@ public class PapelDao {
         } finally {
             JpaUtil.closeEntityManager();
         }
+        System.out.println(result.toString());
         return result;
     }
 }
