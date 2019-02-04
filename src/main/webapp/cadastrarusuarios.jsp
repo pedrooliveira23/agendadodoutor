@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,7 +29,16 @@
 
                     <label>Papel</label>
                     <select>
-<                       <option><%=request.getAttribute("listaPapeis")%></option>
+                        <%
+                            java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel>) session.getAttribute("listaDePapeis");
+                            for (int i = 0; i < lista.size(); i++) {
+                        %>
+                        <option>
+                            <%=lista.get(i).getNome()%>
+                        </option>
+                        <%
+                            }
+                        %>
                     </select>
                 </div>
                 <div class="row">

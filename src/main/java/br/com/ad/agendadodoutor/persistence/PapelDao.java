@@ -10,7 +10,7 @@ public class PapelDao {
     public List<Papel> listePapeis() {
         List<Papel> result = new ArrayList<Papel>();
         try {
-            String jpql = "from papel";
+            String jpql = "FROM Papel";
             result = JpaUtil.getEntityManager()
                     .createQuery(jpql, Papel.class).getResultList();
         } catch (Exception e) {
@@ -18,7 +18,6 @@ public class PapelDao {
         } finally {
             JpaUtil.closeEntityManager();
         }
-        System.out.println(result.toString());
         return result;
     }
 }

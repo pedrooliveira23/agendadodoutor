@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "cadastrarusuarios", urlPatterns = {"/cadastrarusuarios"})
+@WebServlet(value="/cadastrarusuarios")
 public class CadastrarUsuariosServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +21,6 @@ public class CadastrarUsuariosServlet extends HttpServlet {
     private void listePapeis(HttpServletRequest request) {
         PapelBo papelBo = new PapelBo();
         HttpSession sessao = request.getSession();
-        request.setAttribute("listaPapeis", "Teste");
+        sessao.setAttribute("listaDePapeis", papelBo.listePapeis());
     }
 }

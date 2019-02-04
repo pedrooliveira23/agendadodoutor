@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,7 +11,24 @@
 </head>
 <body>
 
-<%@include file="navbar.jsp"%>
+<div class="container">
+    <h1>Agenda do Doutor</h1>
+    <div class="row">
+        <form method="post">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="nomedeusuario">Nome de Usuário</label>
+                    <input type="text" class="form-control" id="nomedeusuario" name="nomedeusuario">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha">
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

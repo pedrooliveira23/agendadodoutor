@@ -15,19 +15,17 @@
                     Administração
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/cadastrarusuarios">Cadastrar Usuários</a>
+                    <a class="dropdown-item" href="listagemdeusuarios">Usuários</a>
                 </div>
             </li>
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarUsuario" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <security:authorize access="isAuthenticated()">
-                        <security:authentication property="principal.username"/>
-                    </security:authorize>
+                    <%=session.getAttribute("nomeDeUsuario")%>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/logout">Sair</a>
+                    <a class="dropdown-item" href="logout">Sair</a>
                 </div>
             </li>
         </ul>
