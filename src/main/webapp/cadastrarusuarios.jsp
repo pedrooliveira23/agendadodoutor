@@ -12,46 +12,49 @@
 <body>
 <%@include file="navbar.jsp" %>
 
-<div class="container">
-    <h1>Cadastro de Usuários</h1>
-    <div class="row">
-        <form>
-            <div class="col-md">
-                <div class="form-group">
-                    <label>Nome de Usuário</label>
-                    <input type="text" class="form-control" id="nomedeusuario">
-
-                    <label>E-mail</label>
-                    <input type="email" class="form-control" id="email">
-
-                    <label>Senha</label>
-                    <input type="password" class="form-control" id="senha">
-
-                    <label>Papel</label>
-                    <select>
-                        <%
-                            java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel>) session.getAttribute("listaDePapeis");
-                            for (int i = 0; i < lista.size(); i++) {
-                        %>
-                        <option>
-                            <%=lista.get(i).getNome()%>
-                        </option>
-                        <%
-                            }
-                        %>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                        <button class="btn btn-success">Enviar</button>
-                    </div>
-                    <div class="col-md">
-                        <button class="btn btn-warning">Limpar</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+<div class="container mt-3">
+    <div class="text-center">
+        <h1>Cadastro de Usuários</h1>
     </div>
+    <form class="row mt-5">
+        <div class="col-md-1">
+            <div id="sidebar">
+                <h5>
+                    <small><b>Ações</b></small>
+                </h5>
+                <ul class="list-unstyled">
+                    <button class="btn btn-md" type="submit" name="acao" value="salvar">Salvar</button>
+                    <button class="btn btn-md" type="submit" name="acao" value="limpar">Limpar</button>
+                    <button class="btn btn-md" type="submit" name="acao" value="voltar">Voltar</button>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <label>Nome de Usuário:</label>
+            <input type="text" class="form-control" id="nomedeusuario" name="nomedeusuario">
+
+            <label class="mt-2">E-mail:</label>
+            <input type="email" class="form-control" id="email" name="email">
+
+            <label class="mt-2">Senha:</label>
+            <input type="password" class="form-control" id="senha" name="senha">
+
+            <label class="mt-2">Papel:</label>
+            <select name="papel">
+                <%
+                    java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel>) session.getAttribute("listaDePapeis");
+                    for (int i = 0; i < lista.size(); i++) {
+                %>
+                <option>
+                    <%=lista.get(i).getNome()%>
+                </option>
+                <%
+                    }
+                %>
+            </select>
+        </div>
+    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

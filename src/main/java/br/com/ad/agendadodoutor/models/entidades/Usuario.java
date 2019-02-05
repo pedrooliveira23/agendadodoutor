@@ -1,11 +1,12 @@
 package br.com.ad.agendadodoutor.models.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Usuario {
-    @Id
+    @Id @GeneratedValue
     private int id;
     private String nomeDeUsuario;
     private String email;

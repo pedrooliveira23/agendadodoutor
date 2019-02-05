@@ -19,13 +19,12 @@
     </div>
     <div class="row mt-5">
         <div class="col-md-2">
-            <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
             <div id="sidebar">
                 <h5>
                     <small><b>Ações</b></small>
                 </h5>
                 <ul class="list-unstyled">
-                    <li><a href="#">Novo</a></li>
+                    <li><a href="./cadastrarusuarios">Novo</a></li>
                     <li><a href="#">Editar</a></li>
                     <li><a href="#">Remover</a></li>
                 </ul>
@@ -42,7 +41,7 @@
             </div>
         </div>
         <div class="col-md-10">
-            <table class="table table-hover" style="tr::onclick">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>

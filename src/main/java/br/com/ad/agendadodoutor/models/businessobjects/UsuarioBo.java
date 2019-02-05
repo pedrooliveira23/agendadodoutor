@@ -20,4 +20,12 @@ public class UsuarioBo {
         return usuarioDao.obtenhaUsuarios();
     }
 
+    public boolean crieUsuario(Usuario usuario) {
+        if (crieUsuario(usuario)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

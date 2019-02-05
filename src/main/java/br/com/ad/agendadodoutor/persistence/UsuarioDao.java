@@ -3,10 +3,17 @@ package br.com.ad.agendadodoutor.persistence;
 import br.com.ad.agendadodoutor.models.entidades.Usuario;
 import br.com.ad.agendadodoutor.utils.JpaUtil;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDao {
+    private EntityManagerFactory emf = Persistence
+            .createEntityManagerFactory("ad-persistence");
+    private EntityManager em = emf.createEntityManager();
+
     public Usuario obtenhaUsuario(String nomeDeUsuario) {
         List<Usuario> result = new ArrayList();
         try {
@@ -40,6 +47,31 @@ public class UsuarioDao {
             return null;
         } else {
             return result;
+        }
+    }
+
+    public boolean crieUsuario(Usuario usuario) {
+        try {
+            em.getTransaction().begin();
+
+            em.persist(usuario);
+
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (em != null) {
+                em.getTransaction().rollback();
+            }
+            return false;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+            return false;
         }
     }
 }
