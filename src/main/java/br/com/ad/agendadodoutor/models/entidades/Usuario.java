@@ -10,7 +10,7 @@ public class Usuario {
     private String nomeDeUsuario;
     private String email;
     private String senha;
-    private int papel;
+    private String papel;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getPapel() {
+    public String getPapel() {
         return papel;
     }
 
-    public void setPapel(int papel) {
+    public void setPapel(String papel) {
         this.papel = papel;
     }
 }

@@ -6,6 +6,6 @@ INSERT INTO Papel VALUES (nextval('hibernate_sequence'),'Administrador');
 
 INSERT INTO Papel VALUES (nextval('hibernate_sequence'),'Operador');
 
-CREATE TABLE Usuario (id INT, NomeDeUsuario TEXT, Email TEXT, Senha TEXT, Papel INT);
+CREATE TABLE Usuario (id INT, NomeDeUsuario TEXT, Email TEXT, Senha TEXT, Papel TEXT);
 
-INSERT INTO Usuario VALUES (nextval('hibernate_sequence'),'admin', 'admin@admin.com','admin',(SELECT id FROM Papel Where nome='Administrador'));
+INSERT INTO Usuario VALUES (nextval('hibernate_sequence'),'admin', 'admin@admin.com','admin','Administrador');

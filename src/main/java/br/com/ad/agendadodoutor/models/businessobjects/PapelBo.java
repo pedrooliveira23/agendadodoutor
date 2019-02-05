@@ -6,7 +6,11 @@ import br.com.ad.agendadodoutor.persistence.PapelDao;
 import java.util.List;
 
 public class PapelBo {
-     private PapelDao papeldao = new PapelDao();
+     private PapelDao papeldao;
+
+     public PapelBo() {
+         papeldao = new PapelDao();
+     }
 
      public List<Papel> listePapeis() {
          return papeldao.listePapeis();

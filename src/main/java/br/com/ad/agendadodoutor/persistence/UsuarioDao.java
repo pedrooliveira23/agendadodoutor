@@ -24,4 +24,22 @@ public class UsuarioDao {
             return result.get(0);
         }
     }
+
+    public List<Usuario> obtenhaUsuarios() {
+        List<Usuario> result = new ArrayList();
+        try {
+            String jpql = "FROM Usuario";
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Usuario.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        if(result.size() == 0) {
+            return null;
+        } else {
+            return result;
+        }
+    }
 }

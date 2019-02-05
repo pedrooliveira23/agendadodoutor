@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,19 +11,38 @@
 </head>
 <body>
 
-<%@include file="navbar.jsp"%>
+<%@include file="navbar.jsp" %>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <ul>
-                <li>Novo</li>
-                <li>Editar</li>
-                <li>Remover</li>
-            </ul>
+<div class="container mt-3">
+    <div class="text-center">
+        <h1>Usuários</h1>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-2">
+            <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
+            <div id="sidebar">
+                <h5>
+                    <small><b>Ações</b></small>
+                </h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Novo</a></li>
+                    <li><a href="#">Editar</a></li>
+                    <li><a href="#">Remover</a></li>
+                </ul>
+                <h5>
+                    <small><b>Pesquisar</b></small>
+                </h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <form>
+                            <input type="text" class="form-control" id="buscar" placeholder="Nome de Usuario...">
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-lg">
-            <table class="table">
+        <div class="col-md-10">
+            <table class="table table-hover" style="tr::onclick">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -33,29 +52,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%
+                    java.util.List<br.com.ad.agendadodoutor.models.entidades.Usuario> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Usuario>) session.getAttribute("listaDeUsuarios");
+                    for (int i = 0; i < lista.size(); i++) {
+                %>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><%=lista.get(i).getId()%></th>
+                    <td><%=lista.get(i).getNomeDeUsuario()%></td>
+                    <td><%=lista.get(i).getEmail()%></td>
+                    <td><%=lista.get(i).getPapel()%></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
