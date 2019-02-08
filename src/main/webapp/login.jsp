@@ -12,8 +12,8 @@
 <body>
 
 <div class="container">
-    <h1>Agenda do Doutor</h1>
-    <div class="row">
+    <h1 class="align-self-center">Agenda do Doutor</h1>
+    <div class="row align-self-center">
         <form method="post">
             <div class="col-md">
                 <div class="form-group">

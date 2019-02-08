@@ -2,7 +2,7 @@ package br.com.ad.agendadodoutor.servlets;
 
 import br.com.ad.agendadodoutor.models.businessobjects.PapelBo;
 import br.com.ad.agendadodoutor.models.businessobjects.UsuarioBo;
-import br.com.ad.agendadodoutor.models.entidades.Usuario;
+import br.com.ad.agendadodoutor.models.entities.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(value = "/cadastrarusuarios")
 public class CadastrarUsuariosServlet extends HttpServlet {
@@ -20,47 +22,40 @@ public class CadastrarUsuariosServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         listePapeis(request);
 
-        String acaoParam = request.getParameter("acao");
-        String acao = acaoParam == null ? "" : acaoParam;
-
-        if (acao.equals("salvar")) {
-            crieUsuario(request);
+        if (existeParametros(request)) {
+            if (obtenhaParametros(request).get(0)[0].equals("salvar")) {
+                crieUsuario(request);
+            } else if (obtenhaParametros(request).get(0)[0].equals("limpar")) {
+                limparParametros(request);
+            }
         }
 
         request.getRequestDispatcher("cadastrarusuarios.jsp").forward(request, response);
     }
 
+    private void limparParametros(HttpServletRequest request) {
 
-    private List<String> obtenhaParametros(HttpServletRequest request) {
-        String nomeParam = request.getParameter("nomedeusuario");
-        String emailParam = request.getParameter("email");
-        String senhaParam = request.getParameter("senha");
-        String papelParam = request.getParameter("papel");
+    }
 
-        String nome = nomeParam == null ? "" : nomeParam;
-        String email = emailParam == null ? "" : emailParam;
-        String senha = senhaParam == null ? "" : senhaParam;
-        String papel = papelParam == null ? "" : papelParam;
+    private Map<String, String[]> obtenhaParametros(HttpServletRequest request) {
+        Map<String, String[]> parametros = request.getParameterMap();
+        return parametros;
+    }
 
-        List<String> listaDeParametros = new ArrayList<String>();
-        listaDeParametros.add(nome);
-        listaDeParametros.add(email);
-        listaDeParametros.add(senha);
-        listaDeParametros.add(papel);
-
-        return listaDeParametros;
+    private boolean existeParametros(HttpServletRequest request) {
+        return request.getParameterMap().size() > 0 ? true : false;
     }
 
     private void crieUsuario(HttpServletRequest request) {
-        UsuarioBo usuabiobo = new UsuarioBo();
-        List<String> parametros = obtenhaParametros(request);
-        Usuario usuario = new Usuario();
-        usuario.setNomeDeUsuario(parametros.get(0));
-        usuario.setEmail(parametros.get(1));
-        usuario.setSenha(parametros.get(2));
-        usuario.setPapel(parametros.get(3));
-
-        usuabiobo.crieUsuario(usuario);
+        if (existeParametros(request)) {
+            UsuarioBo usuariobo = new UsuarioBo();
+            Usuario usuario = new Usuario();
+            usuario.setNomeDeUsuario(obtenhaParametros(request).get(1)[0]);
+            usuario.setEmail(obtenhaParametros(request).get(2)[0]);
+            usuario.setSenha(obtenhaParametros(request).get(3)[0]);
+            usuario.setPapel(obtenhaParametros(request).get(4)[0]);
+            usuariobo.crieUsuario(usuario);
+        }
     }
 
     private void listePapeis(HttpServletRequest request) {

@@ -1,6 +1,6 @@
 package br.com.ad.agendadodoutor.persistence;
 
-import br.com.ad.agendadodoutor.models.entidades.Usuario;
+import br.com.ad.agendadodoutor.models.entities.Usuario;
 import br.com.ad.agendadodoutor.utils.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDao {
-    private EntityManagerFactory emf = Persistence
-            .createEntityManagerFactory("ad-persistence");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("ad-persistence");
     private EntityManager em = emf.createEntityManager();
 
     public Usuario obtenhaUsuario(String nomeDeUsuario) {

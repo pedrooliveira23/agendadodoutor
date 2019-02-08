@@ -43,7 +43,7 @@
             <label class="mt-2">Papel:</label>
             <select name="papel">
                 <%
-                    java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Papel>) session.getAttribute("listaDePapeis");
+                    java.util.List<br.com.ad.agendadodoutor.models.entities.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entities.Papel>) session.getAttribute("listaDePapeis");
                     for (int i = 0; i < lista.size(); i++) {
                 %>
                 <option>

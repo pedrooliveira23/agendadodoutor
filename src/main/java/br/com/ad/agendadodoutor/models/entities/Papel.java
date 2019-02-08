@@ -1,4 +1,4 @@
-package br.com.ad.agendadodoutor.models.entidades;
+package br.com.ad.agendadodoutor.models.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

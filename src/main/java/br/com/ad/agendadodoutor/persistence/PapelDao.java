@@ -1,6 +1,6 @@
 package br.com.ad.agendadodoutor.persistence;
 
-import br.com.ad.agendadodoutor.models.entidades.Papel;
+import br.com.ad.agendadodoutor.models.entities.Papel;
 import br.com.ad.agendadodoutor.utils.JpaUtil;
 
 import java.util.ArrayList;

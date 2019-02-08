@@ -1,7 +1,7 @@
 package br.com.ad.agendadodoutor.servlets;
 
 import br.com.ad.agendadodoutor.models.businessobjects.UsuarioBo;
-import br.com.ad.agendadodoutor.models.entidades.Usuario;
+import br.com.ad.agendadodoutor.models.entities.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

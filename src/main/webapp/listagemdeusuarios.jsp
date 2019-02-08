@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                 <%
-                    java.util.List<br.com.ad.agendadodoutor.models.entidades.Usuario> lista = (java.util.List<br.com.ad.agendadodoutor.models.entidades.Usuario>) session.getAttribute("listaDeUsuarios");
+                    java.util.List<br.com.ad.agendadodoutor.models.entities.Usuario> lista = (java.util.List<br.com.ad.agendadodoutor.models.entities.Usuario>) session.getAttribute("listaDeUsuarios");
                     for (int i = 0; i < lista.size(); i++) {
                 %>
                 <tr>

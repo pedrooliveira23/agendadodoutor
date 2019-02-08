@@ -1,6 +1,6 @@
 package br.com.ad.agendadodoutor.models.businessobjects;
 
-import br.com.ad.agendadodoutor.models.entidades.Usuario;
+import br.com.ad.agendadodoutor.models.entities.Usuario;
 import br.com.ad.agendadodoutor.persistence.UsuarioDao;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class UsuarioBo {
     }
 
     public boolean crieUsuario(Usuario usuario) {
-        if (crieUsuario(usuario)) {
+        if (usuarioDao.crieUsuario(usuario)) {
             return true;
         } else {
             return false;
