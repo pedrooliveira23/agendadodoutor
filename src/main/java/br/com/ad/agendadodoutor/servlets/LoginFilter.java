@@ -28,6 +28,7 @@ public class LoginFilter implements Filter {
                     chain.doFilter(request, response);
                 }
             } catch (NullPointerException e) {
+                System.out.println(e.getCause());
                 res.sendRedirect("login");
             }
         }

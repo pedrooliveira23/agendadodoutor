@@ -23,9 +23,9 @@ public class CadastrarUsuariosServlet extends HttpServlet {
         listePapeis(request);
 
         if (existeParametros(request)) {
-            if (obtenhaParametros(request).get(0)[0].equals("salvar")) {
+            if (obtenhaParametros(request).get(0).toString().equals("salvar")) {
                 crieUsuario(request);
-            } else if (obtenhaParametros(request).get(0)[0].equals("limpar")) {
+            } else if (obtenhaParametros(request).get(0).toString().equals("limpar")) {
                 limparParametros(request);
             }
         }
@@ -37,8 +37,10 @@ public class CadastrarUsuariosServlet extends HttpServlet {
 
     }
 
-    private Map<String, String[]> obtenhaParametros(HttpServletRequest request) {
-        Map<String, String[]> parametros = request.getParameterMap();
+    private Map obtenhaParametros(HttpServletRequest request) {
+        Map parametros = request.getParameterMap();
+        HttpSession session = request.getSession();
+        session.setAttribute("usuarioValido","true");
         return parametros;
     }
 
@@ -50,10 +52,10 @@ public class CadastrarUsuariosServlet extends HttpServlet {
         if (existeParametros(request)) {
             UsuarioBo usuariobo = new UsuarioBo();
             Usuario usuario = new Usuario();
-            usuario.setNomeDeUsuario(obtenhaParametros(request).get(1)[0]);
-            usuario.setEmail(obtenhaParametros(request).get(2)[0]);
-            usuario.setSenha(obtenhaParametros(request).get(3)[0]);
-            usuario.setPapel(obtenhaParametros(request).get(4)[0]);
+            usuario.setNomeDeUsuario(obtenhaParametros(request).get(1).toString());
+            usuario.setEmail(obtenhaParametros(request).get(2).toString());
+            usuario.setSenha(obtenhaParametros(request).get(3).toString());
+            usuario.setPapel(obtenhaParametros(request).get(4).toString());
             usuariobo.crieUsuario(usuario);
         }
     }
