@@ -23,9 +23,9 @@
                     <small><b>Ações</b></small>
                 </h5>
                 <ul class="list-unstyled">
-                    <button class="btn btn-md" type="submit" name="acao" value="salvar">Salvar</button>
-                    <button class="btn btn-md" type="submit" name="acao" value="limpar">Limpar</button>
-                    <button class="btn btn-md" type="submit" name="acao" value="voltar">Voltar</button>
+                    <button class="btn btn-md btn-link" type="submit" name="acao" value="salvar">Salvar</button>
+                    <button class="btn btn-md btn-link" type="submit" name="acao" value="limpar">Limpar</button>
+                    <button class="btn btn-md btn-link" type="submit" name="acao" value="voltar">Voltar</button>
                 </ul>
             </div>
         </div>

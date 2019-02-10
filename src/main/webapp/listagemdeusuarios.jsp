@@ -24,9 +24,9 @@
                     <small><b>Ações</b></small>
                 </h5>
                 <ul class="list-unstyled">
-                    <li><a href="./cadastrarusuarios">Novo</a></li>
-                    <li><a href="#">Editar</a></li>
-                    <li><a href="#">Remover</a></li>
+                    <li><button class="btn btn-md btn-link" type="submit"><a href="./cadastrarusuarios">Novo</a></button></li>
+                    <li><button class="btn btn-md btn-link" type="submit"><a href="#">Editar</a></button></li>
+                    <li><button class="btn btn-md btn-link" type="submit"><a href="#">Remover</a></button></li>
                 </ul>
                 <h5>
                     <small><b>Pesquisar</b></small>
