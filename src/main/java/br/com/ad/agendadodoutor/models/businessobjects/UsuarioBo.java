@@ -28,4 +28,8 @@ public class UsuarioBo {
         }
     }
 
+    public List<Usuario> pesquiseUsuarios(String sentenca) {
+        return usuarioDao.pesquiseUsuarios(sentenca);
+    }
+
 }

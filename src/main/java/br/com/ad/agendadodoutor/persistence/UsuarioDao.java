@@ -16,7 +16,7 @@ public class UsuarioDao {
     public Usuario obtenhaUsuario(String nomeDeUsuario) {
         List<Usuario> result = new ArrayList();
         try {
-            String jpql = "FROM Usuario WHERE nomedeusuario='"+nomeDeUsuario+"'";
+            String jpql = "FROM Usuario WHERE nomedeusuario='" + nomeDeUsuario + "'";
             result = JpaUtil.getEntityManager()
                     .createQuery(jpql, Usuario.class).getResultList();
         } catch (Exception e) {
@@ -24,10 +24,28 @@ public class UsuarioDao {
         } finally {
             JpaUtil.closeEntityManager();
         }
-        if(result.size() == 0) {
+        if (result.size() == 0) {
             return null;
         } else {
             return result.get(0);
+        }
+    }
+
+    public List<Usuario> pesquiseUsuarios(String sentenca) {
+        List<Usuario> result = new ArrayList();
+        try {
+            String jpql = "FROM Usuario WHERE nomedeusuario LIKE LOWER('%" + sentenca + "%')";
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Usuario.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        if (result.size() == 0) {
+            return null;
+        } else {
+            return result;
         }
     }
 
@@ -42,7 +60,7 @@ public class UsuarioDao {
         } finally {
             JpaUtil.closeEntityManager();
         }
-        if(result.size() == 0) {
+        if (result.size() == 0) {
             return null;
         } else {
             return result;

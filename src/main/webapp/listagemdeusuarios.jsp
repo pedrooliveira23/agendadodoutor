@@ -34,7 +34,7 @@
                 <ul class="list-unstyled">
                     <li>
                         <form>
-                            <input type="text" class="form-control" id="buscar" placeholder="Nome de Usuario...">
+                            <input type="text" class="form-control" id="buscar" placeholder="Nome de Usuario..." name="pesquisar">
                         </form>
                     </li>
                 </ul>

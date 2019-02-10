@@ -30,6 +30,7 @@ public class CadastrarUsuariosServlet extends HttpServlet {
         if (acao.equals("salvar")) {
             crieUsuario(request);
             limpeParametros(request);
+            atualize(request, response);
         } else if (acao.equals("limpar")) {
             limpeParametros(request);
             atualize(request, response);
