@@ -1,3 +1,4 @@
+<%@ page import="br.com.ad.agendadodoutor.models.entities.Papel" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -43,11 +44,11 @@
             <label class="mt-2">Papel:</label>
             <select name="papel">
                 <%
-                    java.util.List<br.com.ad.agendadodoutor.models.entities.Papel> lista = (java.util.List<br.com.ad.agendadodoutor.models.entities.Papel>) session.getAttribute("listaDePapeis");
-                    for (int i = 0; i < lista.size(); i++) {
+                    java.util.List<Papel> lista = (java.util.List<Papel>) request.getAttribute("papeis");
+                    for (Papel papel : lista) {
                 %>
                 <option>
-                    <%=lista.get(i).getNome()%>
+                    <%=papel.getNome()%>
                 </option>
                 <%
                     }

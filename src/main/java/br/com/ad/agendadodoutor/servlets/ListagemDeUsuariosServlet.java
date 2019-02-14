@@ -13,22 +13,44 @@ import java.io.IOException;
 @WebServlet(value = "/listagemdeusuarios")
 public class ListagemDeUsuariosServlet extends HttpServlet {
     private UsuarioBo usuarioBo;
-    private HttpSession session;
+    private String acao;
+    private String pesquisar;
+    private String editarUsuario;
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usuarioBo = new UsuarioBo();
-        session = request.getSession();
 
+        carregueParametros(request);
         listeUsuarios(request);
-
-        String pesquisar = request.getParameter("pesquisar") == null ? "" : request.getParameter("pesquisar");
 
         if (!pesquisar.equals("")) {
             pesquiseUsuarios(request, pesquisar);
+            limpeParametros();
             atualize(request, response);
+        } else if (acao.equals("novo")) {
+            limpeParametros();
+            vaParaCadastrarUsuarios(request, response);
+        } else if (!editarUsuario.equals("")) {
+            request.setAttribute("usuarioParaEditar", editarUsuario);
+            vaParaCadastrarUsuarios(request, response);
         } else {
             atualize(request, response);
         }
+    }
+
+    private void limpeParametros() {
+        acao = "";
+        pesquisar = "";
+    }
+
+    private void vaParaCadastrarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("cadastrarusuarios.jsp").forward(request, response);
+    }
+
+    private void carregueParametros(HttpServletRequest request) {
+        acao = request.getParameter("acao") == null ? "" : request.getParameter("acao");
+        pesquisar = request.getParameter("pesquisar") == null ? "" : request.getParameter("pesquisar");
+        editarUsuario = request.getParameter("editarUsuario") == null ? "" : request.getParameter("editarUsuario");
     }
 
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,10 +58,10 @@ public class ListagemDeUsuariosServlet extends HttpServlet {
     }
 
     private void pesquiseUsuarios(HttpServletRequest request, String sentenca) {
-        session.setAttribute("listaDeUsuarios", usuarioBo.pesquiseUsuarios(sentenca));
+        request.setAttribute("listaDeUsuarios", usuarioBo.pesquiseUsuarios(sentenca));
     }
 
     private void listeUsuarios(HttpServletRequest request) {
-        session.setAttribute("listaDeUsuarios", usuarioBo.obtenhaUsuarios());
+        request.setAttribute("listaDeUsuarios", usuarioBo.obtenhaUsuarios());
     }
 }

@@ -1,3 +1,4 @@
+<%@ page import="br.com.ad.agendadodoutor.models.entities.Usuario" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -23,49 +24,69 @@
                 <h5>
                     <small><b>Ações</b></small>
                 </h5>
-                <ul class="list-unstyled">
-                    <li><button class="btn btn-md btn-link" type="submit"><a href="./cadastrarusuarios">Novo</a></button></li>
-                    <li><button class="btn btn-md btn-link" type="submit"><a href="#">Editar</a></button></li>
-                    <li><button class="btn btn-md btn-link" type="submit"><a href="#">Remover</a></button></li>
-                </ul>
-                <h5>
-                    <small><b>Pesquisar</b></small>
-                </h5>
-                <ul class="list-unstyled">
-                    <li>
-                        <form>
-                            <input type="text" class="form-control" id="buscar" placeholder="Nome de Usuario..." name="pesquisar">
-                        </form>
-                    </li>
-                </ul>
+                <form>
+                    <ul class="list-unstyled">
+                        <ul class="list-unstyled">
+                            <li>
+                                <button class="btn btn-md btn-link" type="submit" name="acao" value="novo">Novo</button>
+                            </li>
+                        </ul>
+                    </ul>
+                </form>
+                <form>
+                    <h5>
+                        <small><b>Pesquisar</b></small>
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <input type="text" class="form-control" id="buscar" placeholder="Nome de Usuario..."
+                                   name="pesquisar">
+                        </li>
+                    </ul>
+                </form>
             </div>
         </div>
         <div class="col-md-10">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome de Usuário</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Papel</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                    java.util.List<br.com.ad.agendadodoutor.models.entities.Usuario> lista = (java.util.List<br.com.ad.agendadodoutor.models.entities.Usuario>) session.getAttribute("listaDeUsuarios");
-                    for (int i = 0; i < lista.size(); i++) {
-                %>
-                <tr>
-                    <th scope="row"><%=lista.get(i).getId()%></th>
-                    <td><%=lista.get(i).getNomeDeUsuario()%></td>
-                    <td><%=lista.get(i).getEmail()%></td>
-                    <td><%=lista.get(i).getPapel()%></td>
-                </tr>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
+            <form>
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Ações</th>
+                        <th scope="col">Nome de Usuário</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Papel</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        java.util.List<Usuario> lista = (java.util.List<Usuario>) request.getAttribute("listaDeUsuarios");
+                        for (Usuario usuario : lista) {
+                    %>
+                    <tr class="text-center">
+                        <th scope="row"><%=usuario.getId()%>
+                        </th>
+                        <td>
+                            <button class="btn btn-sm btn-link" type="submit" name="editarUsuario"
+                                    value="<%=usuario.getNomeDeUsuario()%>">Editar
+                            </button>
+                            <button class="btn btn-sm btn-link" type="submit" name="removerUsuario"
+                                    value="<%=usuario.getNomeDeUsuario()%>">Remover
+                            </button>
+                        </td>
+                        <td><%=usuario.getNomeDeUsuario()%>
+                        </td>
+                        <td><%=usuario.getEmail()%>
+                        </td>
+                        <td><%=usuario.getPapel()%>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

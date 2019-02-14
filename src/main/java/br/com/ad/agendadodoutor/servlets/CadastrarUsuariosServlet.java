@@ -9,35 +9,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @WebServlet(value = "/cadastrarusuarios")
 public class CadastrarUsuariosServlet extends HttpServlet {
-
+    private UsuarioBo usuarioBo;
     private String acao;
     private String nomeDeUsuario;
     private String email;
     private String senha;
     private String papel;
+    private String usuarioParaEditar;
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        listePapeis(request);
         carregueParametros(request);
+        carregueEditar();
+        listePapeis(request);
 
         if (acao.equals("salvar")) {
-            crieUsuario(request);
-            limpeParametros(request);
+            crieUsuario();
+            limpeParametros();
             atualize(request, response);
         } else if (acao.equals("limpar")) {
-            limpeParametros(request);
+            limpeParametros();
             atualize(request, response);
-        } else if(acao.equals("voltar")){
+        } else if (acao.equals("voltar")) {
             request.getRequestDispatcher("listagemdeusuarios.jsp").forward(request, response);
         } else {
             atualize(request, response);
+        }
+    }
+
+    private void carregueEditar() {
+        if (!usuarioParaEditar.equals("")) {
+            usuarioBo = new UsuarioBo();
+            Usuario usuario = usuarioBo.obtenhaUsuario(usuarioParaEditar);
+            nomeDeUsuario = usuario.getNomeDeUsuario();
+            email = usuario.getEmail();
+            senha = usuario.getSenha();
+            papel = usuario.getPapel();
         }
     }
 
@@ -45,12 +55,13 @@ public class CadastrarUsuariosServlet extends HttpServlet {
         request.getRequestDispatcher("cadastrarusuarios.jsp").forward(request, response);
     }
 
-    private void limpeParametros(HttpServletRequest request) {
+    private void limpeParametros() {
         acao = "";
         nomeDeUsuario = "";
         email = "";
         senha = "";
         papel = "";
+        usuarioParaEditar = "";
     }
 
     private void carregueParametros(HttpServletRequest request) {
@@ -59,21 +70,21 @@ public class CadastrarUsuariosServlet extends HttpServlet {
         email = request.getParameter("email") == null ? "" : request.getParameter("email");
         senha = request.getParameter("senha") == null ? "" : request.getParameter("senha");
         papel = request.getParameter("papel") == null ? "" : request.getParameter("papel");
+        usuarioParaEditar = request.getAttribute("usuarioParaEditar").toString() == null ? "" : request.getAttribute("usuarioParaEditar").toString();
     }
 
-    private void crieUsuario(HttpServletRequest request) {
-        UsuarioBo usuariobo = new UsuarioBo();
+    private void crieUsuario() {
+        usuarioBo = new UsuarioBo();
         Usuario usuario = new Usuario();
         usuario.setNomeDeUsuario(nomeDeUsuario);
         usuario.setEmail(email);
         usuario.setSenha(senha);
         usuario.setPapel(papel);
-        usuariobo.crieUsuario(usuario);
+        usuarioBo.crieUsuario(usuario);
     }
 
     private void listePapeis(HttpServletRequest request) {
         PapelBo papelBo = new PapelBo();
-        HttpSession sessao = request.getSession();
-        sessao.setAttribute("listaDePapeis", papelBo.listePapeis());
+        request.setAttribute("papeis", papelBo.listePapeis());
     }
 }
