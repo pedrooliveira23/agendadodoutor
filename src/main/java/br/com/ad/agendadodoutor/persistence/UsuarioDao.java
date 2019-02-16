@@ -91,4 +91,15 @@ public class UsuarioDao {
             return false;
         }
     }
+
+    public void removaUsuario(Usuario usuario) {
+        em.getTransaction().begin();
+        em.remove(em.contains(usuario) ? usuario : em.merge(usuario));
+        em.getTransaction().commit();
+    }
+
+    public void editeUsuario(Usuario usuarioAnterior, Usuario usuarioNovo) {
+        removaUsuario(usuarioAnterior);
+        crieUsuario(usuarioNovo);
+    }
 }

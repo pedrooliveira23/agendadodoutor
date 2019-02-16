@@ -33,13 +33,15 @@
         <div class="col-md-2"></div>
         <div class="col-md-5">
             <label>Nome de Usuário:</label>
-            <input type="text" class="form-control" id="nomedeusuario" name="nomedeusuario">
+            <input type="text" class="form-control" id="nomedeusuario" name="nomedeusuario"
+                   value="<%=request.getAttribute("nomeDeUsuario")%>" <%=request.getParameter("editarUsuario") == null ? "" : "readOnly='true'"%>>
 
             <label class="mt-2">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="<%=request.getAttribute("email")%>">
 
             <label class="mt-2">Senha:</label>
-            <input type="password" class="form-control" id="senha" name="senha">
+            <input type="password" class="form-control" id="senha" name="senha"
+                   value="<%=request.getAttribute("senha")%>">
 
             <label class="mt-2">Papel:</label>
             <select name="papel">
@@ -47,7 +49,7 @@
                     java.util.List<Papel> lista = (java.util.List<Papel>) request.getAttribute("papeis");
                     for (Papel papel : lista) {
                 %>
-                <option>
+                <option <%=request.getAttribute("papel") == papel.getNome() ? "selected='selected'" : "" %>>
                     <%=papel.getNome()%>
                 </option>
                 <%

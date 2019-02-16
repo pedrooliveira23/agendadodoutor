@@ -20,16 +20,19 @@ public class UsuarioBo {
         return usuarioDao.obtenhaUsuarios();
     }
 
-    public boolean crieUsuario(Usuario usuario) {
-        if (usuarioDao.crieUsuario(usuario)) {
-            return true;
-        } else {
-            return false;
-        }
+    public void crieUsuario(Usuario usuario) {
+        usuarioDao.crieUsuario(usuario);
+    }
+
+    public void editeUsuario(Usuario usuarioAnterior, Usuario usuarioNovo) {
+        usuarioDao.editeUsuario(usuarioAnterior, usuarioNovo);
     }
 
     public List<Usuario> pesquiseUsuarios(String sentenca) {
         return usuarioDao.pesquiseUsuarios(sentenca);
     }
 
+    public void removaUsuario(Usuario usuario) {
+        usuarioDao.removaUsuario(usuario);
+    }
 }
