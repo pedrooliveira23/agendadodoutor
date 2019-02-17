@@ -25,6 +25,7 @@
                     <%=session.getAttribute("nomeCompleto")%>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="./dadosdousuario">Meus Dados</a>
                     <a class="dropdown-item" href="./logout">Sair</a>
                 </div>
             </li>

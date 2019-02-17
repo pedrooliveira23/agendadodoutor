@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
             if (senha.equals(usuario.getSenha())) {
                 sessao.setAttribute("usuarioValido", "true");
                 sessao.setAttribute("nomeCompleto", usuario.getNomeCompleto());
+                sessao.setAttribute("nomeDeUsuario", usuario.getNomeDeUsuario());
                 usuarioValido = true;
             } else {
                 sessao.setAttribute("usuarioValido", "false");
