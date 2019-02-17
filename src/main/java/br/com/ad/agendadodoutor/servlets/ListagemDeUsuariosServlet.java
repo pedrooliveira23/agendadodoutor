@@ -15,19 +15,22 @@ import java.io.IOException;
 @WebServlet(value = "/listagemdeusuarios")
 public class ListagemDeUsuariosServlet extends HttpServlet {
     private UsuarioBo usuarioBo;
+    private PapelBo papelBo;
     private Usuario usuarioAtual;
     private String acao;
     private String pesquisar;
     private String editarUsuario;
     private String removerUsuario;
+    private String nomeCompleto;
     private String nomeDeUsuario;
     private String email;
     private String senha;
-    private String papel;
-    HttpSession sessao;
+    private int idPapel;
+    private HttpSession sessao;
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         usuarioBo = new UsuarioBo();
+        papelBo = new PapelBo();
         sessao = request.getSession();
         carregueParametros(request);
 
@@ -72,10 +75,11 @@ public class ListagemDeUsuariosServlet extends HttpServlet {
 
     private Usuario setUsuario() {
         Usuario usuario = new Usuario();
+        usuario.setNomeCompleto(nomeCompleto);
         usuario.setNomeDeUsuario(nomeDeUsuario);
         usuario.setEmail(email);
         usuario.setSenha(senha);
-        usuario.setPapel(papel);
+        usuario.setIdPapel(idPapel);
         return usuario;
     }
 
@@ -96,17 +100,20 @@ public class ListagemDeUsuariosServlet extends HttpServlet {
         removerUsuario = request.getParameter("removerUsuario") == null ? "" : request.getParameter("removerUsuario");
 
         if (editarUsuario.equals("")) {
+            nomeCompleto = request.getParameter("nomecompleto") == null ? "" : request.getParameter("nomecompleto");
             nomeDeUsuario = request.getParameter("nomedeusuario") == null ? "" : request.getParameter("nomedeusuario");
             email = request.getParameter("email") == null ? "" : request.getParameter("email");
             senha = request.getParameter("senha") == null ? "" : request.getParameter("senha");
-            papel = request.getParameter("papel") == null ? "" : request.getParameter("papel");
+            String nomePapel = request.getParameter("papel") == null ? "" : request.getParameter("papel");
+            idPapel = nomePapel == "" ? 0 : papelBo.obtenhaPapelPeloNome(nomePapel).getId();
         } else {
             usuarioBo = new UsuarioBo();
             Usuario usuario = usuarioBo.obtenhaUsuario(editarUsuario);
+            nomeCompleto = usuario.getNomeCompleto();
             nomeDeUsuario = usuario.getNomeDeUsuario();
             email = usuario.getEmail();
             senha = usuario.getSenha();
-            papel = usuario.getPapel();
+            idPapel = usuario.getIdPapel();
             usuarioAtual = usuario;
         }
         setAtributos(request);
@@ -114,14 +121,14 @@ public class ListagemDeUsuariosServlet extends HttpServlet {
 
 
     private void setAtributos(HttpServletRequest request) {
-        PapelBo papelBo = new PapelBo();
+        request.setAttribute("nomeCompleto", nomeCompleto);
         request.setAttribute("nomeDeUsuario", nomeDeUsuario);
         request.setAttribute("email", email);
         request.setAttribute("senha", senha);
-        request.setAttribute("papel", papel);
+        request.setAttribute("papel", idPapel);
         request.setAttribute("papeis", papelBo.listePapeis());
 
-        if(!editarUsuario.equals("")) {
+        if (!editarUsuario.equals("")) {
             sessao.setAttribute("editarUsuario", editarUsuario);
         }
     }

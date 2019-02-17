@@ -31,7 +31,10 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5">
-            <label>Nome de Usuário:</label>
+            <label>Nome Completo:</label>
+            <input type="text" class="form-control" id="nomecompleto" name="nomecompleto" value="<%=request.getAttribute("nomeCompleto")%>">
+
+            <label class="mt-2">Nome de Usuário:</label>
             <input type="text" class="form-control" id="nomedeusuario" name="nomedeusuario"
                    value="<%=request.getAttribute("nomeDeUsuario")%>" <%=request.getParameter("editarUsuario") == null ? "" : "readOnly='true'"%>>
 

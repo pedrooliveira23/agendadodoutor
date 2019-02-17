@@ -6,12 +6,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Usuario {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
+    private String nomeCompleto;
     private String nomeDeUsuario;
     private String email;
     private String senha;
-    private String papel;
+    private int idPapel;
 
     public int getId() {
         return id;
@@ -45,11 +47,19 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getPapel() {
-        return papel;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
-    public void setPapel(String papel) {
-        this.papel = papel;
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public int getIdPapel() {
+        return idPapel;
+    }
+
+    public void setIdPapel(int idPapel) {
+        this.idPapel = idPapel;
     }
 }

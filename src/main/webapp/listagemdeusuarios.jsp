@@ -1,4 +1,5 @@
 <%@ page import="br.com.ad.agendadodoutor.models.entities.Usuario" %>
+<%@ page import="br.com.ad.agendadodoutor.models.businessobjects.PapelBo" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -53,6 +54,7 @@
                     <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Ações</th>
+                        <th scope="col">Nome Completo</th>
                         <th scope="col">Nome de Usuário</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Papel</th>
@@ -60,6 +62,7 @@
                     </thead>
                     <tbody>
                     <%
+                        PapelBo papelBo = new PapelBo();
                         java.util.List<Usuario> lista = (java.util.List<Usuario>) request.getAttribute("listaDeUsuarios");
                         for (Usuario usuario : lista) {
                     %>
@@ -74,11 +77,13 @@
                                     value="<%=usuario.getNomeDeUsuario()%>">Remover
                             </button>
                         </td>
+                        <td><%=usuario.getNomeCompleto()%>
+                        </td>
                         <td><%=usuario.getNomeDeUsuario()%>
                         </td>
                         <td><%=usuario.getEmail()%>
                         </td>
-                        <td><%=usuario.getPapel()%>
+                        <td><%=papelBo.obtenhaPapelPeloId(usuario.getIdPapel()).getNome()%>
                         </td>
                     </tr>
                     <%

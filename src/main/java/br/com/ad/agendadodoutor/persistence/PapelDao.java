@@ -20,4 +20,40 @@ public class PapelDao {
         }
         return result;
     }
+
+    public Papel obtenhaPapelPeloId(int id) {
+        List<Papel> result = new ArrayList();
+        try {
+            String jpql = "FROM Papel WHERE id = " + id;
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Papel.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        if (result.size() == 0) {
+            return null;
+        } else {
+            return result.get(0);
+        }
+    }
+
+    public Papel obtenhaPapelPeloNome(String nome) {
+        List<Papel> result = new ArrayList();
+        try {
+            String jpql = "FROM Papel WHERE nome = '" + nome + "'";
+            result = JpaUtil.getEntityManager()
+                    .createQuery(jpql, Papel.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JpaUtil.closeEntityManager();
+        }
+        if (result.size() == 0) {
+            return null;
+        } else {
+            return result.get(0);
+        }
+    }
 }

@@ -22,7 +22,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarUsuario" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <%=session.getAttribute("nomeDeUsuario")%>
+                    <%=session.getAttribute("nomeCompleto")%>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="./logout">Sair</a>

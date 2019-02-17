@@ -15,7 +15,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(valideLogin(request) == true) {
+        if(valideLogin(request)) {
             response.sendRedirect("paineldecontrole");
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
             if (senha.equals(usuario.getSenha())) {
                 sessao.setAttribute("usuarioValido", "true");
-                sessao.setAttribute("nomeDeUsuario", usuario.getNomeDeUsuario());
+                sessao.setAttribute("nomeCompleto", usuario.getNomeCompleto());
                 usuarioValido = true;
             } else {
                 sessao.setAttribute("usuarioValido", "false");
